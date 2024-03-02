@@ -3,6 +3,7 @@
 
 import random
 
+
 # Defines a class for Page Replacement algorithms including FIFO, LRU, and Optimal methods.
 class PageReplacement:
     # FIFO algorithm: pages are evicted in the same order they were added.
@@ -49,17 +50,18 @@ class PageReplacement:
                 else:  # Find and replace the page with the farthest future use.
                     farthest_index, farthest_page = -1, None
                     for m in memory:
-                        if m not in pages[i+1:]:  # If a page is not used again, it's the best candidate.
+                        if m not in pages[i + 1:]:  # If a page is not used again, it's the best candidate.
                             farthest_page = m
                             break
                         else:  # Otherwise, find the page used farthest in the future.
-                            next_use = pages[i+1:].index(m) + i + 1
+                            next_use = pages[i + 1:].index(m) + i + 1
                             if next_use > farthest_index:
                                 farthest_index, farthest_page = next_use, m
                     memory.remove(farthest_page)
                     memory.add(page)
                 faults += 1  # Increment fault count for each miss.
         return faults
+
 
 # Simulates page replacement for each algorithm across a range of frame sizes.
 def simulate_page_replacement(strings, frames_range):
@@ -73,10 +75,11 @@ def simulate_page_replacement(strings, frames_range):
             results[index]["Optimal"].append(PageReplacement.optimal(string, frames))
     return results
 
+
 if __name__ == "__main__":
     # Header with assignment information
     print("Ayub Yusuf, 2.28.2024, Assignment 5.")
-    
+
     # Simulation setup
     random_page_string = [random.randint(0, 9) for _ in range(20)]
     fixed_page_string1 = [0, 7, 0, 1, 2, 0, 8, 9, 0, 3, 0, 4, 5, 6, 7, 0, 8, 9, 1, 2]
@@ -92,6 +95,6 @@ if __name__ == "__main__":
         for frames in frame_range:
             print(f"For {frames} page frames, and using string page reference string:")
             print(f"{','.join(map(str, page_strings[index]))}")
-            print(f"   FIFO had {result['FIFO'][frames-1]} page faults.")
-            print(f"   LRU had {result['LRU'][frames-1]} page faults.")
-            print(f"   Optimal had {result['Optimal'][frames-1]} page faults.")
+            print(f"   FIFO had {result['FIFO'][frames - 1]} page faults.")
+            print(f"   LRU had {result['LRU'][frames - 1]} page faults.")
+            print(f"   Optimal had {result['Optimal'][frames - 1]} page faults.")

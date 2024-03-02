@@ -9,6 +9,7 @@ def calculate_page_number_and_offset(address):
     offset = address % page_size  # Calculate the offset within the page
     return page_number, offset
 
+
 # List of virtual addresses to process
 addresses = [19986, 347892, 5978]
 
@@ -18,8 +19,8 @@ with open(output_filename, "w") as file:
     # Writing header information to the file
     file.write("Ayub Yusuf\n")
     file.write("Assignment #4\n")
-    file.write("Febuary 21, 2024\n")
-    
+    file.write("February 21, 2024\n")
+
     # Process each address and write the results to the file
     for address in addresses:
         page_number, offset = calculate_page_number_and_offset(address)
@@ -27,5 +28,5 @@ with open(output_filename, "w") as file:
         file.write(f"Page number = {page_number}\n")
         file.write(f"Offset = {offset}\n\n")
 
-# Confirmation message 
+# Confirmation message
 print(f"Output written to {output_filename}.")
