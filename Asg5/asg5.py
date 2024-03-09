@@ -1,10 +1,12 @@
 # Ayub Yusuf
 # Assignment #5
 
+# Description:
+# This Python script simulates three page replacement algorithms: FIFO (First In First Out), LRU (Least Recently Used), and Optimal. 
+
+import os
 import random
 
-
-# Defines a class for Page Replacement algorithms including FIFO, LRU, and Optimal methods.
 class PageReplacement:
     # FIFO algorithm: pages are evicted in the same order they were added.
     @staticmethod
@@ -59,26 +61,30 @@ class PageReplacement:
                                 farthest_index, farthest_page = next_use, m
                     memory.remove(farthest_page)
                     memory.add(page)
-                faults += 1  # Increment fault count for each miss.
+                faults += 1  # Increment.
         return faults
-
 
 # Simulates page replacement for each algorithm across a range of frame sizes.
 def simulate_page_replacement(strings, frames_range):
     results = {}
-    for index, string in enumerate(strings):  # For each page-reference string
+    for index, string in enumerate(strings): 
         results[index] = {"FIFO": [], "LRU": [], "Optimal": []}
-        for frames in frames_range:  # For each frame size
+        for frames in frames_range:  
             # Append the number of faults for each algorithm to the results dictionary.
             results[index]["FIFO"].append(PageReplacement.fifo(string, frames))
             results[index]["LRU"].append(PageReplacement.lru(string, frames))
             results[index]["Optimal"].append(PageReplacement.optimal(string, frames))
     return results
 
-
 if __name__ == "__main__":
+    # Get the directory of the script
+    script_dir = os.path.dirname(os.path.realpath(__file__))
+    output_file_path = os.path.join(script_dir, "output.txt")
+
     # Header with assignment information
-    print("Ayub Yusuf, 2.28.2024, Assignment 5.")
+    output_file = open(output_file_path, "w")  # Open file for writing
+
+    output_file.write("Ayub Yusuf, 3.8.2024, Assignment 5.\n\n")
 
     # Simulation setup
     random_page_string = [random.randint(0, 9) for _ in range(20)]
@@ -93,8 +99,10 @@ if __name__ == "__main__":
     # Print the results with improved formatting
     for index, result in results.items():
         for frames in frame_range:
-            print(f"For {frames} page frames, and using string page reference string:")
-            print(f"{','.join(map(str, page_strings[index]))}")
-            print(f"   FIFO had {result['FIFO'][frames - 1]} page faults.")
-            print(f"   LRU had {result['LRU'][frames - 1]} page faults.")
-            print(f"   Optimal had {result['Optimal'][frames - 1]} page faults.")
+            output_file.write(f"For {frames} page frames, and using string page reference string:\n")
+            output_file.write(f"{','.join(map(str, page_strings[index]))}\n")
+            output_file.write(f"   FIFO had {result['FIFO'][frames - 1]} page faults.\n")
+            output_file.write(f"   LRU had {result['LRU'][frames - 1]} page faults.\n")
+            output_file.write(f"   Optimal had {result['Optimal'][frames - 1]} page faults.\n")
+
+    output_file.close()  # Close the file after writing
