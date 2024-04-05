@@ -1,8 +1,8 @@
 # Ayub Yusuf
 # Assignment #5
 
-# Description:
-# This Python script simulates three page replacement algorithms: FIFO (First In First Out), LRU (Least Recently Used), and Optimal. 
+# Description: This Python script simulates three page replacement algorithms: FIFO (First In First Out), LRU (Least
+# Recently Used), and Optimal.
 
 import os
 import random

@@ -13,6 +13,7 @@ import random
 shared_variable = 100
 lock = threading.Lock()
 
+
 def producer():
     global shared_variable
     for i in range(5):
@@ -20,6 +21,7 @@ def producer():
         with lock:
             shared_variable = i
             print(f"Producer: Writing {i} to shared variable.")
+
 
 def consumer():
     sum = 0
@@ -29,12 +31,13 @@ def consumer():
             value = shared_variable
             print(f"Consumer: Reading {value} from shared variable.")
             sum += value
-    
+
     # Append the sum to the output file for each run
-    with open("output.txt", "a") as file: 
+    with open("output.txt", "a") as file:
         file.write("Ayub Yusuf\nComputer Operating Systems Assignment #2\n")
         file.write(f"The sum is {sum}\n")
         file.write("\n")  # Ensure separation between runs for readability
+
 
 # Create and start threads
 producer_thread = threading.Thread(target=producer)

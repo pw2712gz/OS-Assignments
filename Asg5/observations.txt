@@ -1,9 +1,0 @@
-# Ayub Yusuf
-# Assignment #5
-When we look at how the FIFO, LRU, and Optimal algorithms work with different numbers of page frames, we see some interesting trends. 
-With just one page frame available, all three algorithms end up having the same number of page faults, 
-which makes sense because there's limited space to work with. As we increase the number of page frames, 
-we start to see fewer page faults across the board. This tells us that having more memory available naturally leads to better performance. 
-Among the three, the Optimal algorithm often comes out on top, showing the fewest page faults. 
-This isn't surprising since Optimal has the advantage of knowing future page requests, which the others don't. 
-This comparison really highlights how memory management strategies can make a big difference in managing system resources effectively.
